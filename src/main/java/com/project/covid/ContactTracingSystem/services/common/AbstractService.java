@@ -30,7 +30,6 @@ public abstract class AbstractService<T  > implements IOperations<T> {
     @Override
     public T create(T entity) {
         Object id = getCampValue(entity);
-
         if (getDao().findById((long)id).isEmpty()){
             log.info("User Has Been Added :"+ entity.toString());
             return getDao().save(entity);
@@ -38,7 +37,6 @@ public abstract class AbstractService<T  > implements IOperations<T> {
            log.warn("User Already Exist :"+ entity.toString());
             return entity;
         }
-
     }
 
     @Override
@@ -67,11 +65,9 @@ public abstract class AbstractService<T  > implements IOperations<T> {
             if (auxEntity != null){
                 getDao().delete(auxEntity);
             }
-
         }catch (Exception e){
             throw e;
         }
-
     }
     private Object getCampValue(T entity){
         if(entity == null){
@@ -88,7 +84,6 @@ public abstract class AbstractService<T  > implements IOperations<T> {
                 }
             }
         }
-
         return null;
     }
 
