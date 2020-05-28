@@ -1,9 +1,6 @@
 package com.project.covid.ContactTracingSystem.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Address {
@@ -14,6 +11,8 @@ public class Address {
     private String postalCode;
     private String city;
     private String country;
+    @OneToOne
+    private GenericUser genericUser;
 
     public Address() {
     }

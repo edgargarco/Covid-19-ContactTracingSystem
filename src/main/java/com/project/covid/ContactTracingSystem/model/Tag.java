@@ -1,7 +1,6 @@
 package com.project.covid.ContactTracingSystem.model;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
 public class Tag {
@@ -11,6 +10,8 @@ public class Tag {
     @Column(unique = true,nullable = false)
     private String tagId;
     private String data;
+    @OneToOne
+    private GenericUser genericUser;
 
     public Tag() {
     }

@@ -25,21 +25,20 @@ public class BootStrapConf implements ApplicationListener<ContextRefreshedEvent>
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        loadTag();
         loadAddress();
 
+
     }
 
-    public void loadTag() {
-        tagService.create(new Tag((long) 1, "324-5432", "Name: Jhon Doe"));
-        tagService.create(new Tag((long) 2, "324-5433", "Name: Zoe Click"));
-    }
+//    public void loadTag() {
+//        tagService.create(new Tag((long) 1, "324-5432", "Name: Jhon Doe"));
+//        tagService.create(new Tag((long) 2, "324-5433", "Name: Zoe Click"));
+//    }
     public void loadAddress(){
         addressService.create(new Address((long)1,"Avenida John F. Kennedy, esquina Calle Bienvenido García Gautier"
                 ,"10102","Santo Domingo","Republica Dominicana"));
         addressService.create(new Address((long)2,"Avenida John F. Kennedy, esquina Calle Bienvenido García Gautier"
                 ,"41000","La Vega","Republica Dominicana"));
-      //  addressService.deleteById((long)3);
-        addressService.findOne((long)4);
+
     }
 }
