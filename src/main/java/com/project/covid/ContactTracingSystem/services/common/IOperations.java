@@ -3,7 +3,7 @@ package com.project.covid.ContactTracingSystem.services.common;
 import java.io.Serializable;
 import java.util.List;
 
-public interface IOperations<T extends Serializable>  {
+public interface IOperations<T >  {
     T findOne(final Object id);
 
     List<T> findAll();

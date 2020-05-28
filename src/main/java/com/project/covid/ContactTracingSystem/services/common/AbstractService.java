@@ -14,7 +14,7 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 @Transactional
-public abstract class AbstractService<T extends Serializable> implements IOperations<T> {
+public abstract class AbstractService<T  > implements IOperations<T> {
     private static Log log = LogFactory.getLog(AbstractService.class);
 
     @Override
