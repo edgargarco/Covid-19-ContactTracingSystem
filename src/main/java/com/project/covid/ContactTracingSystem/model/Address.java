@@ -16,8 +16,8 @@ public class Address {
 
     public Address() {
     }
-    public Address(Long id, String direction,String postalCode,String city,String country){
-        this.id = id;
+    public Address( String direction,String postalCode,String city,String country){
+
         this.direction = direction;
         this.postalCode = postalCode;
         this.city = city;

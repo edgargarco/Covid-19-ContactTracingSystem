@@ -14,10 +14,10 @@ public class BootStrapConf implements ApplicationListener<ContextRefreshedEvent>
     private TagService tagService;
     private AddressService addressService;
 
-    @Autowired
-    public void setTagService(TagService tagService) {
-        this.tagService = tagService;
-    }
+//    @Autowired
+//    public void setTagService(TagService tagService) {
+//        this.tagService = tagService;
+//    }
     @Autowired
     public void setAddressService(AddressService addressService) {
         this.addressService = addressService;
@@ -35,10 +35,11 @@ public class BootStrapConf implements ApplicationListener<ContextRefreshedEvent>
 //        tagService.create(new Tag((long) 2, "324-5433", "Name: Zoe Click"));
 //    }
     public void loadAddress(){
-        addressService.create(new Address((long)1,"Avenida John F. Kennedy, esquina Calle Bienvenido García Gautier"
+        addressService.create(new Address( "Avenida John F. Kennedy, esquina Calle Bienvenido García Gautier"
                 ,"10102","Santo Domingo","Republica Dominicana"));
-        addressService.create(new Address((long)2,"Avenida John F. Kennedy, esquina Calle Bienvenido García Gautier"
+        addressService.create(new Address( "Avenida John F. Kennedy, esquina Calle Bienvenido García Gautier"
                 ,"41000","La Vega","Republica Dominicana"));
 
+        addressService.delete(addressService.findOne((long)4));
     }
 }

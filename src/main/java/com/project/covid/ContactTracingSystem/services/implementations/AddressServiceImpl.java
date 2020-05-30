@@ -40,7 +40,9 @@ public class AddressServiceImpl implements AddressService {
 
     @Override
     public void delete(Address entity) {
-        addressRepository.delete(entity);
+        if (entity != null){
+            addressRepository.delete(entity);
+        }
     }
 
     @Override
