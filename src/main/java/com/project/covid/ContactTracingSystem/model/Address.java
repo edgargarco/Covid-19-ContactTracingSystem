@@ -11,7 +11,7 @@ public class Address {
     private String postalCode;
     private String city;
     private String country;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private GenericUser genericUser;
 
     public Address() {

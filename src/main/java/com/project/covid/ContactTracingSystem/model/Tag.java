@@ -10,15 +10,16 @@ public class Tag {
     @Column(unique = true,nullable = false)
     private String tagId;
     private String data;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private GenericUser genericUser;
 
     public Tag() {
     }
-    public Tag(Long id, String tagId,String data) {
-        this.id = id;
+    public Tag( String tagId,String data) {
+
         this.data = data;
         this.tagId = tagId;
+
     }
 
     public Long getId() {

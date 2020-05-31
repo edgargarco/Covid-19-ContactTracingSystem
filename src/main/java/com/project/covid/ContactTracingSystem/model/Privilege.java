@@ -14,6 +14,11 @@ public class Privilege {
 
     public Privilege() {
     }
+    public Privilege(String name, List<UserRole> userRoles) {
+        this.name = name;
+        this.userRoles = userRoles;
+    }
+
 
     public Long getId() {
         return id;

@@ -16,6 +16,11 @@ public class UserRole {
 
     public UserRole() {
     }
+    public UserRole(String roleName, List<GenericUser> genericUsers, List<Privilege> privileges){
+        this.roleName = roleName;
+        this.genericUsers = genericUsers;
+        this.privileges = privileges;
+    }
 
     public Long getId() {
         return id;

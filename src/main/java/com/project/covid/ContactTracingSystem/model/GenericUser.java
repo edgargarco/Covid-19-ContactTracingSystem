@@ -1,5 +1,7 @@
 package com.project.covid.ContactTracingSystem.model;
 
+import com.project.covid.ContactTracingSystem.model.enums.CivilStatus;
+import com.project.covid.ContactTracingSystem.model.enums.Gender;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -7,6 +9,7 @@ import java.sql.Date;
 import java.util.List;
 
 @Entity
+
 public class GenericUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,7 +17,7 @@ public class GenericUser {
     private String firstName;
     private String lastName;
     private String personalIdentifier;
-    @OneToOne
+    @OneToOne(mappedBy = "genericUser", cascade = CascadeType.ALL )
     private Address address;
     @OneToOne
     private UserCredential userCredential;
@@ -22,12 +25,14 @@ public class GenericUser {
     private String email;
     private String cellPhone;
     private Date birthDate;
-    private String gender;
-    private String civilStatus;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+    @Enumerated(EnumType.STRING)
+    private CivilStatus civilStatus;
     private String occupation;
     @OneToMany
     private List<UserRole> userRoleList;
-    @OneToOne
+    @OneToOne(mappedBy = "genericUser", cascade = CascadeType.ALL )
     private Tag tag;
     @CreationTimestamp
     private Date createdOn;
@@ -37,6 +42,45 @@ public class GenericUser {
     private List<HealthStatus> healthStatus;
 
     public GenericUser() {
+    }
+
+    public GenericUser(String firstName, String lastName, String personalIdentifier,
+                       Address address, UserCredential userCredential, String email,
+                       String cellPhone, Date birthDate, Gender gender, CivilStatus civilStatus,
+                       String occupation, List<UserRole> userRoleList, Tag tag, List<HealthStatus> healthStatus) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.personalIdentifier = personalIdentifier;
+        this.address = address;
+        this.userCredential = userCredential;
+        this.email = email;
+        this.cellPhone = cellPhone;
+        this.birthDate = birthDate;
+        this.gender = gender;
+        this.civilStatus = civilStatus;
+        this.occupation = occupation;
+        this.userRoleList = userRoleList;
+        this.tag = tag;
+        this.healthStatus = healthStatus;
+    }
+    public GenericUser(String firstName, String lastName, String personalIdentifier,
+                       Address address,   String email,
+                       String cellPhone, Date birthDate, Gender gender, CivilStatus civilStatus,
+                       String occupation, Tag tag ) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.personalIdentifier = personalIdentifier;
+        this.address = address;
+        this.address = address;
+        this.email = email;
+        this.cellPhone = cellPhone;
+        this.birthDate = birthDate;
+        this.gender = gender;
+        this.civilStatus = civilStatus;
+        this.occupation = occupation;
+
+        this.tag = tag;
+
     }
 
     public Long getId() {
@@ -111,21 +155,23 @@ public class GenericUser {
         this.birthDate = birthDate;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
-    public String getCivilStatus() {
+    public CivilStatus getCivilStatus() {
         return civilStatus;
     }
 
-    public void setCivilStatus(String civilStatus) {
+    public void setCivilStatus(CivilStatus civilStatus) {
         this.civilStatus = civilStatus;
     }
+
+
 
     public String getOccupation() {
         return occupation;

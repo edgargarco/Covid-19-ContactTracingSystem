@@ -43,4 +43,18 @@ public class AddressService implements ICrudOperation<Address,Long> {
     public Address findById(Long id) {
         return addressRepository.findById(id).orElse(null);
     }
+
+    public Collection<Address> findAddressByCity(String city){
+        return addressRepository.findAddressByCityContaining(city);
+    }
+    public Collection<Address> findAddressByPostalCode(String postalCode){
+        return addressRepository.findAddressByPostalCode(postalCode);
+    }
+    public Collection<Address> findAddressByDirection(String postalCode){
+        return addressRepository.findAddressByDirectionContaining(postalCode);
+    }
+    public Collection<Address> findAddressByDirectionContainingAndCityContaining(String direction, String city){
+        return addressRepository.findAddressByDirectionContainingAndCityContaining(direction,city);
+    }
+
 }
