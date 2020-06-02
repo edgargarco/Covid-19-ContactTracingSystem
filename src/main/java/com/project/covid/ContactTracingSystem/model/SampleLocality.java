@@ -3,8 +3,11 @@ package com.project.covid.ContactTracingSystem.model;
 import javax.persistence.*;
 
 
-
+@MappedSuperclass
 public class SampleLocality {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private Address address;
     private String email;

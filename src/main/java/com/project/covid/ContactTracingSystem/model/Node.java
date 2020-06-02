@@ -2,14 +2,14 @@ package com.project.covid.ContactTracingSystem.model;
 
 import javax.persistence.*;
 
-@Entity
+ @Entity
 public class Node {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nodeId;
     private boolean isAuthenticated;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private GpsLocation gpsLocation;
     @OneToOne
     private Locality locality;
@@ -17,6 +17,14 @@ public class Node {
     private GpsLocation lastLocation;
 
     public Node() {
+    }
+
+    public Node(String nodeId, boolean isAuthenticated, GpsLocation gpsLocation, Locality locality, GpsLocation lastLocation) {
+        this.nodeId = nodeId;
+        this.isAuthenticated = isAuthenticated;
+        this.gpsLocation = gpsLocation;
+        this.locality = locality;
+        this.lastLocation = lastLocation;
     }
 
     public Long getId() {

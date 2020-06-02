@@ -14,8 +14,12 @@ public class GpsLocation {
     private BigDecimal latitude;
     private BigDecimal longitude;
 
-    public GpsLocation()
-    {
+    public GpsLocation() {
+    }
+
+    public GpsLocation(BigDecimal latitude, BigDecimal longitude) {
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public Long getId() {

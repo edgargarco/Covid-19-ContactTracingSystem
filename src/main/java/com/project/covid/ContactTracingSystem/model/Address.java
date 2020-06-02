@@ -2,17 +2,13 @@ package com.project.covid.ContactTracingSystem.model;
 
 import javax.persistence.*;
 
-@Entity
+@Embeddable
 public class Address {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
     private String direction;
     private String postalCode;
     private String city;
     private String country;
-    @OneToOne(fetch = FetchType.LAZY)
-    private GenericUser genericUser;
 
     public Address() {
     }
@@ -24,13 +20,7 @@ public class Address {
         this.country = country;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getDirection() {
         return direction;

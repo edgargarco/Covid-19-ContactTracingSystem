@@ -11,10 +11,16 @@ public class UserCredential {
     private String password;
     private String validationCode;
     private boolean isAuthenticated;
-    @OneToOne
+    @OneToOne(mappedBy = "userCredential")
     private GenericUser genericUser;
 
     public UserCredential() {
+    }
+    public UserCredential(String username, String password, String validationCode, boolean isAuthenticated) {
+        this.username = username;
+        this.password = password;
+        this.validationCode = validationCode;
+        this.isAuthenticated = isAuthenticated;
     }
 
     public Long getId() {

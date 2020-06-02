@@ -17,9 +17,10 @@ public class GenericUser {
     private String firstName;
     private String lastName;
     private String personalIdentifier;
-    @OneToOne(mappedBy = "genericUser", cascade = CascadeType.ALL )
+    @Embedded
     private Address address;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_credential_id ")
     private UserCredential userCredential;
     @Column(unique = true)
     private String email;
@@ -32,46 +33,28 @@ public class GenericUser {
     private String occupation;
     @OneToMany
     private List<UserRole> userRoleList;
-    @OneToOne(mappedBy = "genericUser", cascade = CascadeType.ALL )
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "generic_user_tag_id")
     private Tag tag;
     @CreationTimestamp
     private Date createdOn;
     @CreationTimestamp
     private Date tagGivenOn;
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     private List<HealthStatus> healthStatus;
 
     public GenericUser() {
     }
 
+
+
     public GenericUser(String firstName, String lastName, String personalIdentifier,
-                       Address address, UserCredential userCredential, String email,
+                         String email,
                        String cellPhone, Date birthDate, Gender gender, CivilStatus civilStatus,
-                       String occupation, List<UserRole> userRoleList, Tag tag, List<HealthStatus> healthStatus) {
+                       String occupation ) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.personalIdentifier = personalIdentifier;
-        this.address = address;
-        this.userCredential = userCredential;
-        this.email = email;
-        this.cellPhone = cellPhone;
-        this.birthDate = birthDate;
-        this.gender = gender;
-        this.civilStatus = civilStatus;
-        this.occupation = occupation;
-        this.userRoleList = userRoleList;
-        this.tag = tag;
-        this.healthStatus = healthStatus;
-    }
-    public GenericUser(String firstName, String lastName, String personalIdentifier,
-                       Address address,   String email,
-                       String cellPhone, Date birthDate, Gender gender, CivilStatus civilStatus,
-                       String occupation, Tag tag ) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.personalIdentifier = personalIdentifier;
-        this.address = address;
-        this.address = address;
         this.email = email;
         this.cellPhone = cellPhone;
         this.birthDate = birthDate;
@@ -79,7 +62,6 @@ public class GenericUser {
         this.civilStatus = civilStatus;
         this.occupation = occupation;
 
-        this.tag = tag;
 
     }
 

@@ -9,10 +9,15 @@ public class PcrTest {
     private Long id;
     private boolean test;
     private boolean status;
-    @OneToOne
+    @OneToOne(mappedBy = "test")
     private HealthStatus healthStatus;
 
     public PcrTest() {
+    }
+
+    public PcrTest(boolean test, boolean status) {
+        this.test = test;
+        this.status = status;
     }
 
     public Long getId() {

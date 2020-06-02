@@ -9,12 +9,12 @@ public class Privilege {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @OneToMany
+    @ManyToMany
     private List<UserRole> userRoles;
 
     public Privilege() {
     }
-    public Privilege(String name, List<UserRole> userRoles) {
+    public Privilege(String name) {
         this.name = name;
         this.userRoles = userRoles;
     }

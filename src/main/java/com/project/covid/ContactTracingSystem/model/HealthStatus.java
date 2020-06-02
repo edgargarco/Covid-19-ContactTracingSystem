@@ -1,5 +1,7 @@
 package com.project.covid.ContactTracingSystem.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -8,10 +10,13 @@ public class HealthStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    private GenericUser genericUser;
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "generic_user_health_id")
+    private GenericUser genericUserHealth;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "health_status_id")
     private PcrTest test;
+    @CreationTimestamp
     private Date statusDate;
     private boolean fever;
     private boolean cough;
@@ -31,12 +36,12 @@ public class HealthStatus {
         this.id = id;
     }
 
-    public GenericUser getGenericUser() {
-        return genericUser;
+    public GenericUser getGenericUserHealth() {
+        return genericUserHealth;
     }
 
-    public void setGenericUser(GenericUser genericUser) {
-        this.genericUser = genericUser;
+    public void setGenericUserHealth(GenericUser genericUserHealth) {
+        this.genericUserHealth = genericUserHealth;
     }
 
     public PcrTest getTest() {

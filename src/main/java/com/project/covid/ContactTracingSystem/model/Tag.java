@@ -10,8 +10,8 @@ public class Tag {
     @Column(unique = true,nullable = false)
     private String tagId;
     private String data;
-    @OneToOne(fetch = FetchType.LAZY)
-    private GenericUser genericUser;
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "tag")
+    private GenericUser genericUserTag;
 
     public Tag() {
     }
@@ -20,6 +20,14 @@ public class Tag {
         this.data = data;
         this.tagId = tagId;
 
+    }
+
+    public GenericUser getGenericUserTag() {
+        return genericUserTag;
+    }
+
+    public void setGenericUserTag(GenericUser genericUserTag) {
+        this.genericUserTag = genericUserTag;
     }
 
     public Long getId() {

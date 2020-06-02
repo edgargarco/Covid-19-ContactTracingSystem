@@ -7,9 +7,7 @@ import java.util.List;
 
 @Entity
 public class Institution extends SampleLocality{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
     @OneToMany
     private List<GenericUser> genericUsers;
     @Enumerated(EnumType.STRING)
@@ -56,14 +54,6 @@ public class Institution extends SampleLocality{
     @Override
     public void setCellPhone(String cellPhone) {
         super.setCellPhone(cellPhone);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public List<GenericUser> getGenericUsers() {

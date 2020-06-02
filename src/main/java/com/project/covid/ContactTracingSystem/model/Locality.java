@@ -5,23 +5,13 @@ import java.util.List;
 
 @Entity
 public class Locality extends SampleLocality{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @OneToMany
+
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Node> nodes;
     @OneToMany
     private List<Visit> visits;
 
     public Locality() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public List<Node> getNodes() {
@@ -31,6 +21,7 @@ public class Locality extends SampleLocality{
     public void setNodes(List<Node> nodes) {
         this.nodes = nodes;
     }
+
 
     public List<Visit> getVisits() {
         return visits;

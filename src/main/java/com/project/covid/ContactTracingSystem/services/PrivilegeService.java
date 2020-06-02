@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
+import java.util.List;
+
 @Transactional
 @Service
 public class PrivilegeService implements ICrudOperation<Privilege, Long> {
@@ -41,5 +43,9 @@ public class PrivilegeService implements ICrudOperation<Privilege, Long> {
     @Override
     public Privilege findById(Long aLong) {
         return privilegeRepository.findById(aLong).orElse(null);
+    }
+
+    public List<Privilege> findThreePrivileges(String privilege_1,String privilege_2,String privilege_3){
+        return privilegeRepository.findThreePrivileges(privilege_1,privilege_2,privilege_3);
     }
 }

@@ -9,17 +9,16 @@ public class UserRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String roleName;
-    @OneToMany
+    @ManyToMany
     private List<GenericUser> genericUsers;
-    @OneToMany
+    @ManyToMany
     private List<Privilege> privileges;
 
     public UserRole() {
     }
-    public UserRole(String roleName, List<GenericUser> genericUsers, List<Privilege> privileges){
+    public UserRole(String roleName){
         this.roleName = roleName;
-        this.genericUsers = genericUsers;
-        this.privileges = privileges;
+
     }
 
     public Long getId() {
@@ -52,5 +51,8 @@ public class UserRole {
 
     public void setPrivileges(List<Privilege> privileges) {
         this.privileges = privileges;
+    }
+    public void setPrivilege(Privilege privilege){
+        this.privileges.add(privilege);
     }
 }
