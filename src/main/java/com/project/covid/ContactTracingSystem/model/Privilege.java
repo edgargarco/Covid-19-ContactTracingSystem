@@ -1,5 +1,7 @@
 package com.project.covid.ContactTracingSystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
@@ -11,6 +13,7 @@ public class Privilege {
     private Long id;
     private String name;
     @ManyToMany(mappedBy = "privileges")
+    @JsonBackReference
     private Collection<Role> roles;
 
     public Privilege() {

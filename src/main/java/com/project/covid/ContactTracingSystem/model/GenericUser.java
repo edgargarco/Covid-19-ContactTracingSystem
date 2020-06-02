@@ -1,5 +1,6 @@
 package com.project.covid.ContactTracingSystem.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.project.covid.ContactTracingSystem.model.enums.CivilStatus;
 import com.project.covid.ContactTracingSystem.model.enums.Gender;
 import org.hibernate.annotations.CreationTimestamp;
@@ -21,8 +22,9 @@ public class GenericUser {
     private String personalIdentifier;
     @Embedded
     private Address address;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_credential_id ")
+    @JsonManagedReference
     private UserCredential userCredential;
     @Column(unique = true)
     private String email;
@@ -34,15 +36,18 @@ public class GenericUser {
     private CivilStatus civilStatus;
     private String occupation;
     @ManyToMany
+    @JsonManagedReference
     private Collection<Role> roles;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "generic_user_tag_id")
+    @JsonManagedReference
     private Tag tag;
     @CreationTimestamp
     private Date createdOn;
     @CreationTimestamp
     private Date tagGivenOn;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "genericUserHealth")
+    @JsonManagedReference
     private Collection<HealthStatus> healthStatus;
 
     public GenericUser() {

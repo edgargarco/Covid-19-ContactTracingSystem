@@ -1,5 +1,7 @@
 package com.project.covid.ContactTracingSystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -10,11 +12,13 @@ public class HealthStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "generic_user_health_id")
+    @JsonBackReference
     private GenericUser genericUserHealth;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "health_status_id")
+    @JsonManagedReference
     private PcrTest test;
     @CreationTimestamp
     private Date statusDate;

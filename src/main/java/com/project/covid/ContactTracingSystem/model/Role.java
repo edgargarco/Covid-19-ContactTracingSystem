@@ -1,5 +1,8 @@
 package com.project.covid.ContactTracingSystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.List;
@@ -7,12 +10,14 @@ import java.util.List;
 @Entity
 public class Role {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String roleName;
     @ManyToMany(mappedBy = "roles")
+    @JsonBackReference
     private Collection<GenericUser> users;
     @ManyToMany
+    @JsonManagedReference
     private Collection<Privilege> privileges;
 
     public Role() {

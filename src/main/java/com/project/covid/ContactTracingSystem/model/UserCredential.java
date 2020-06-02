@@ -1,17 +1,20 @@
 package com.project.covid.ContactTracingSystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
 public class UserCredential {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
     private String username;
     private String password;
     private String validationCode;
     private boolean isAuthenticated;
     @OneToOne(mappedBy = "userCredential")
+    @JsonBackReference
     private GenericUser genericUser;
 
     public UserCredential() {

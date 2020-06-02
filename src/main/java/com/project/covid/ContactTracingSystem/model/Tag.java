@@ -1,5 +1,7 @@
 package com.project.covid.ContactTracingSystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,7 +12,8 @@ public class Tag {
     @Column(unique = true,nullable = false)
     private String tagId;
     private String data;
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "tag")
+    @OneToOne(mappedBy = "tag")
+    @JsonBackReference
     private GenericUser genericUserTag;
 
     public Tag() {

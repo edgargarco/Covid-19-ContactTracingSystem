@@ -1,5 +1,7 @@
 package com.project.covid.ContactTracingSystem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,7 @@ public class PcrTest {
     private boolean test;
     private boolean status;
     @OneToOne(mappedBy = "test")
+    @JsonBackReference
     private HealthStatus healthStatus;
 
     public PcrTest() {
