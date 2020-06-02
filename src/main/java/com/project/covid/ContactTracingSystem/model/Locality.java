@@ -1,20 +1,21 @@
 package com.project.covid.ContactTracingSystem.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 public class Locality extends SampleLocality{
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Node> nodes;
+    private Collection<Node> nodes;
     @OneToMany
-    private List<Visit> visits;
+    private Collection<Visit> visits;
 
     public Locality() {
     }
 
-    public List<Node> getNodes() {
+    public Collection<Node> getNodes() {
         return nodes;
     }
 
@@ -23,7 +24,7 @@ public class Locality extends SampleLocality{
     }
 
 
-    public List<Visit> getVisits() {
+    public Collection<Visit> getVisits() {
         return visits;
     }
 

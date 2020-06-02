@@ -6,6 +6,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -31,8 +33,8 @@ public class GenericUser {
     @Enumerated(EnumType.STRING)
     private CivilStatus civilStatus;
     private String occupation;
-    @OneToMany
-    private List<UserRole> userRoleList;
+    @ManyToMany
+    private Collection<Role> roles;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "generic_user_tag_id")
     private Tag tag;
@@ -40,8 +42,8 @@ public class GenericUser {
     private Date createdOn;
     @CreationTimestamp
     private Date tagGivenOn;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<HealthStatus> healthStatus;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "genericUserHealth")
+    private Collection<HealthStatus> healthStatus;
 
     public GenericUser() {
     }
@@ -163,12 +165,12 @@ public class GenericUser {
         this.occupation = occupation;
     }
 
-    public List<UserRole> getUserRoleList() {
-        return userRoleList;
+    public Collection<Role> getRoles() {
+        return roles;
     }
 
-    public void setUserRoleList(List<UserRole> userRoleList) {
-        this.userRoleList = userRoleList;
+    public void setRoles(Collection<Role> roleList) {
+        this.roles = roleList;
     }
 
     public Tag getTag() {
@@ -195,11 +197,18 @@ public class GenericUser {
         this.tagGivenOn = tagGivenOn;
     }
 
-    public List<HealthStatus> getHealthStatus() {
+    public Collection<HealthStatus> getHealthStatus() {
         return healthStatus;
     }
 
     public void setHealthStatus(List<HealthStatus> healthStatus) {
         this.healthStatus = healthStatus;
+    }
+
+    public void addRole(Role role){
+        if (roles == null){
+            roles = new ArrayList<>();
+        }
+        roles.add(role);
     }
 }

@@ -1,6 +1,7 @@
 package com.project.covid.ContactTracingSystem.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -9,14 +10,14 @@ public class Privilege {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @ManyToMany
-    private List<UserRole> userRoles;
+    @ManyToMany(mappedBy = "privileges")
+    private Collection<Role> roles;
 
     public Privilege() {
     }
     public Privilege(String name) {
         this.name = name;
-        this.userRoles = userRoles;
+        this.roles = roles;
     }
 
 
@@ -36,11 +37,11 @@ public class Privilege {
         this.name = name;
     }
 
-    public List<UserRole> getUserRoles() {
-        return userRoles;
+    public Collection<Role> getRoles() {
+        return roles;
     }
 
-    public void setUserRoles(List<UserRole> userRoles) {
-        this.userRoles = userRoles;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

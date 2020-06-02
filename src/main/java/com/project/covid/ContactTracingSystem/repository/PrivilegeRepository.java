@@ -20,4 +20,6 @@ public interface PrivilegeRepository extends JpaRepository<Privilege,Long> {
     @Query("SELECT u FROM Privilege u WHERE u.name = :privilege_1 OR u.name = :privilege_2 OR u.name = :privilege_3")
     List<Privilege> findThreePrivileges (@Param("privilege_1") String privilege_1, @Param("privilege_2") String privilege_2,
                                          @Param("privilege_3") String privilege_3);
+
+    Privilege findByName(String privilege);
 }

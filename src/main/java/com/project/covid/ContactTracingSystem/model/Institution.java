@@ -3,13 +3,14 @@ package com.project.covid.ContactTracingSystem.model;
 import com.project.covid.ContactTracingSystem.model.enums.InstitutionType;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 public class Institution extends SampleLocality{
 
     @OneToMany
-    private List<GenericUser> genericUsers;
+    private Collection<GenericUser> genericUsers;
     @Enumerated(EnumType.STRING)
     private InstitutionType institution;
 
@@ -56,7 +57,7 @@ public class Institution extends SampleLocality{
         super.setCellPhone(cellPhone);
     }
 
-    public List<GenericUser> getGenericUsers() {
+    public Collection<GenericUser> getGenericUsers() {
         return genericUsers;
     }
 

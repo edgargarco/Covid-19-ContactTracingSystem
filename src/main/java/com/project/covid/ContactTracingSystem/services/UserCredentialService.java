@@ -42,4 +42,8 @@ public class UserCredentialService implements ICrudOperation<UserCredential, Lon
     public UserCredential findById(Long aLong) {
         return userCredentialRepository.findById(aLong).orElse(null);
     }
+
+    public UserCredential findByName(String username){
+        return userCredentialRepository.findByUsernameStartingWithIgnoreCase(username);
+    }
 }

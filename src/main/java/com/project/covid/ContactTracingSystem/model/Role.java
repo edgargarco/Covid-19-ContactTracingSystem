@@ -1,22 +1,23 @@
 package com.project.covid.ContactTracingSystem.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
-public class UserRole {
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String roleName;
+    @ManyToMany(mappedBy = "roles")
+    private Collection<GenericUser> users;
     @ManyToMany
-    private List<GenericUser> genericUsers;
-    @ManyToMany
-    private List<Privilege> privileges;
+    private Collection<Privilege> privileges;
 
-    public UserRole() {
+    public Role() {
     }
-    public UserRole(String roleName){
+    public Role(String roleName){
         this.roleName = roleName;
 
     }
@@ -37,19 +38,19 @@ public class UserRole {
         this.roleName = roleName;
     }
 
-    public List<GenericUser> getGenericUsers() {
-        return genericUsers;
+    public Collection<GenericUser> getUsers() {
+        return users;
     }
 
-    public void setGenericUsers(List<GenericUser> genericUsers) {
-        this.genericUsers = genericUsers;
+    public void setUsers(Collection<GenericUser> genericUsers) {
+        this.users = genericUsers;
     }
 
-    public List<Privilege> getPrivileges() {
+    public Collection<Privilege> getPrivileges() {
         return privileges;
     }
 
-    public void setPrivileges(List<Privilege> privileges) {
+    public void setPrivileges(Collection<Privilege> privileges) {
         this.privileges = privileges;
     }
     public void setPrivilege(Privilege privilege){

@@ -48,4 +48,8 @@ public class PrivilegeService implements ICrudOperation<Privilege, Long> {
     public List<Privilege> findThreePrivileges(String privilege_1,String privilege_2,String privilege_3){
         return privilegeRepository.findThreePrivileges(privilege_1,privilege_2,privilege_3);
     }
+
+    public Privilege findByName(String privilege){
+        return privilegeRepository.findByName(privilege);
+    }
 }

@@ -1,9 +1,10 @@
 package com.project.covid.ContactTracingSystem.repository;
 
-import com.project.covid.ContactTracingSystem.model.UserRole;
+import com.project.covid.ContactTracingSystem.model.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRoleRepository extends JpaRepository<UserRole,Long> {
+public interface RoleRepository extends JpaRepository<Role,Long> {
+    Role findByRoleName(String roleName);
 }
